@@ -88,3 +88,54 @@ const titles = [
 //was there at least one book published within the last 100 years?
 
 //was every book published within the last 100 years?
+
+//Array of authors and the book they wrote
+//"--- wrote --- in ---"
+
+//Sort books from oldest to most recent
+
+const sortByDate = (books) => {
+  const sorter = (a, b) => {
+    return (
+      new Date(a.publishDate).getTime() - new Date(b.publishDate).getTime()
+    );
+  };
+  books.sort(sorter);
+  return books;
+};
+console.log(sortByDate(books));
+
+// comment out the line code above when done
+
+//sort alphabetically
+
+const alphatitles = titles.sort();
+console.log(alphatitles);
+
+//Find who wrote War and Peace
+
+const wnp1 = books[5]["authorFirst"];
+const wnp2 = books[5]["authorLast"];
+console.log(wnp1, wnp2);
+
+//how many books were written before 1900?
+function before1900({ publishDate: value }) {
+  if (1900 > value) return "1 +";
+  else return "0";
+}
+
+const cool = books.map(before1900);
+console.log(cool);
+
+//was there at least one book published within the last 100 years?
+function publish100within({ publishDate: value }) {
+  if (1921 < value) return console.log("yes");
+}
+
+books.map(publish100within);
+//was every book published within the last 100 years?
+function publish100years({ publishDate: value }) {
+  if (1921 > value) return console.log("no");
+}
+
+books.map(publish100years);
